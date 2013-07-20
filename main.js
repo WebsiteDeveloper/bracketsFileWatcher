@@ -22,8 +22,7 @@
  */
 
 
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4,
-maxerr: 50, browser: true */
+/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50, browser: true */
 /*global $, define, brackets */
 
 define(function (require, exports, module) {
@@ -38,26 +37,10 @@ define(function (require, exports, module) {
         NodeConnection       = brackets.getModule("utils/NodeConnection"),
         ProjectManager       = brackets.getModule("project/ProjectManager");
 
-    /**
-     * @const
-     * Amount of time to wait before automatically rejecting the connection
-     * deferred. If we hit this timeout, we'll never have a node connection
-     * for the static server in this run of Brackets.
-     */
     var NODE_CONNECTION_TIMEOUT = 5000; // 5 seconds
     
-    /**
-     * @private
-     * @type{jQuery.Deferred.<NodeConnection>}
-     * A deferred which is resolved with a NodeConnection or rejected if
-     * we are unable to connect to Node.
-     */
     var _nodeConnectionDeferred = new $.Deferred();
-    
-    /**
-     * @private
-     * @type {NodeConnection}
-     */
+
     var _nodeConnection = new NodeConnection();
     
     function initExtension() {
@@ -82,7 +65,7 @@ define(function (require, exports, module) {
 
                     _nodeConnectionDeferred.resolveWith(null, [_nodeConnection]);
                 }).fail(
-                function () { // Failed to connect
+                function () {
                     console.error("[FileWatcher] Failed to connect to node", arguments);
                     _nodeConnectionDeferred.reject();
                 }
@@ -94,7 +77,6 @@ define(function (require, exports, module) {
 
     AppInit.htmlReady(function () {
         _nodeConnectionDeferred.done(function (nodeConnection) {
-            //nodeConnection.fileWatcher.startWatching(ProjectManager.getProjectRoot().fullPath, 1000);
             $(ProjectManager).on("projectOpen", function () {
                 _nodeConnection.domains.fileWatcher.startWatching(ProjectManager.getProjectRoot().fullPath);
             });
