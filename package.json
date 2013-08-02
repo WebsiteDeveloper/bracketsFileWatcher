@@ -1,9 +1,9 @@
 {
-    "name": "bsirlinger.bracketsFileWatcher",
+    "name": "bsirlinger.brackets-file-watcher",
     "title": "FileWatcher",
     "description": "Adds file watching for the current Project.",
-    "homepage": "https://github.com/cfjedimaster/brackets-csslint",
-    "version": "0.0.1",
+    "homepage": "https://github.com/WebsiteDeveloper/bracketsFileWatcher",
+    "version": "0.1.0",
     "author": "Bernhard Sirlinger <bernhard@sirlinger.de> (https://github.com/WebsiteDeveloper)",
     "license": "MIT",
     "engines": {

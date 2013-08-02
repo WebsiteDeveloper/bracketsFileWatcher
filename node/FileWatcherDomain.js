@@ -27,7 +27,7 @@
 (function () {
     "use strict";
     
-    var watch = require("directory-tree-watcher");
+    var Gaze = require("gaze");
     
     var _domainManager;
     
@@ -36,10 +36,21 @@
     }
     
     function startWatching(dir) {
-        watch(dir, function(event, file) {
-            emitEvents(file, event);
-        }, function (error, Watcher) {
+        process.chdir(dir);
+        var g = new Gaze("**/*", {interval: 5000});
         
+        g.on('changed', function (filepath) {
+            //console.log(filepath + ' was changed');
+        });
+
+        // On file added
+        g.on('added', function (filepath) {
+            emitEvents(filepath, null);
+        });
+
+        // On file deleted
+        g.on('deleted', function (filepath) {
+            emitEvents(filepath, null);
         });
     }
     
