@@ -8,7 +8,8 @@ even better send a pull request.
 
 
 #### Release Notes:
+* 0.10: Changed watching module and don't refresh on file changes from within brackets
 * 0.01: Added basical watching capablities.
 
 ##### Credits
-This extension relies on the node module [directory-tree-watcher](https://raw.github.com/jolira/directory-tree-watcher)
+This extension relies on the node module [gaze](https://npmjs.org/package/gaze)
