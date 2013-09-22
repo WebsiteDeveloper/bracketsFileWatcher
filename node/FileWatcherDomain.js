@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Bernhard Sirlinger. All rights reserved.
+ * Copyright (c) 2013 Bernhard Sirlinger. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -22,7 +22,6 @@
  */
 
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50, node: true */
-/*global */
 
 (function () {
     "use strict";
@@ -38,10 +37,6 @@
     function startWatching(dir) {
         process.chdir(dir);
         var g = new Gaze("**/*", {interval: 5000});
-        
-        g.on('changed', function (filepath) {
-            //console.log(filepath + ' was changed');
-        });
 
         // On file added
         g.on('added', function (filepath) {

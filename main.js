@@ -37,7 +37,7 @@ define(function (require, exports, module) {
         NodeConnection       = brackets.getModule("utils/NodeConnection"),
         ProjectManager       = brackets.getModule("project/ProjectManager");
 
-    var NODE_CONNECTION_TIMEOUT = 5000; // 5 seconds
+    var NODE_CONNECTION_TIMEOUT = 10000; // 10 seconds
     var wasBracketsCommand = false;
     
     var _nodeConnectionDeferred = new $.Deferred();
@@ -83,8 +83,13 @@ define(function (require, exports, module) {
                 _nodeConnection.domains.fileWatcher.startWatching(ProjectManager.getProjectRoot().fullPath);
             });
         });
-        $(CommandManager).on("beforeExecuteCommand", function () {
-            wasBracketsCommand = true;
+        $(CommandManager).on("beforeExecuteCommand", function (event, id) {
+            if (id.split(".")[0] === "file") {
+                wasBracketsCommand = true;
+                setTimeout(function () {
+                    wasBracketsCommand = false;
+                }, 100);
+            }
         });
     });
     
