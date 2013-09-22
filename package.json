@@ -3,7 +3,7 @@
     "title": "FileWatcher",
     "description": "Adds file watching for the current Project.",
     "homepage": "https://github.com/WebsiteDeveloper/bracketsFileWatcher",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "Bernhard Sirlinger <bernhard@sirlinger.de> (https://github.com/WebsiteDeveloper)",
     "license": "MIT",
     "engines": {
